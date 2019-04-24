@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:id="@+id/customerLoginRL"
+    tools:context=".activities.CustomerLogin">
+
+
+    <EditText
+        android:id="@+id/customerEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/customerPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@id/customerEmail"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/cLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/customerPassword"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/cRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cLogin"
+        android:text="Customer Registration" />
+
+    <Button
+        android:id="@+id/adminLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cRegistration"
+        android:text="Administrator Login" />
+
+</RelativeLayout>
