@@ -14,4 +14,5 @@
         completions."
     </string>
     <string name="sort_products_by">Sort Products By</string>
+    <string name="admin_stock_list">Stock List</string>
 </resources>
