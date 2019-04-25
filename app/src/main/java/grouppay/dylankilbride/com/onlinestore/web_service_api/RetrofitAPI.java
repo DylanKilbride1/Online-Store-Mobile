@@ -3,6 +3,7 @@ package grouppay.dylankilbride.com.onlinestore.web_service_api;
 import java.util.List;
 
 import grouppay.dylankilbride.com.onlinestore.models.AuthorisationResponse;
+import grouppay.dylankilbride.com.onlinestore.models.Customer;
 import grouppay.dylankilbride.com.onlinestore.models.LoginDetails;
 import grouppay.dylankilbride.com.onlinestore.models.Product;
 import retrofit2.Call;
@@ -28,4 +29,7 @@ public interface RetrofitAPI {
 
   @PUT("/products/updateproductstock")
   Call<List<Product>> updateProductStockLevels(@Body List<Product> updatedProducts);
+
+  @GET("/customers/getallcustomers")
+  Call<List<Customer>> getAllCustomers();
 }

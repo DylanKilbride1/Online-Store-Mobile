@@ -1,5 +1,6 @@
 package grouppay.dylankilbride.com.onlinestore.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +35,7 @@ public class AdminHomePage extends AppCompatActivity {
   private String baseUrl = "http://10.0.2.2:8080";
   private String selectedSortType = "ascending";
   private List<Product> productList = new ArrayList<>();
-  private Button confirmUpdate;
+  private Button confirmUpdate, viewCustomers;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,15 @@ public class AdminHomePage extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         setUpProductsStockUpdateCall();
+      }
+    });
+
+    viewCustomers = findViewById(R.id.adminViewCustomers);
+    viewCustomers.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent customerView = new Intent(AdminHomePage.this, AdminViewCustomers.class);
+        startActivity(customerView);
       }
     });
 
