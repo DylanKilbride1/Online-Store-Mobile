@@ -80,8 +80,9 @@ public class CustomerLogin extends AppCompatActivity {
         if(!response.isSuccessful()){
           Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
         } else {
-          if((response.body().getRoleId() != 0) && (response.body().isAuthorisationSuccess())) {
+          if((response.body().getRoleId() != "0") && (response.body().isAuthorisationSuccess())) {
             Intent customerHome = new Intent(CustomerLogin.this, CustomerHomePage.class);
+            customerHome.putExtra("customer", response.body().getRoleId());
             startActivity(customerHome);
           } else {
             View context = findViewById(R.id.customerLoginRL);

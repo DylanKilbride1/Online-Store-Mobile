@@ -32,8 +32,14 @@ tools:context=".activities.CustomerHomePage">
 <android.support.v7.widget.RecyclerView
     android:id="@+id/customerProductsRecyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="520dp"
     android:padding="10dp">
 </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/customerViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="View Cart"/>
 
 </LinearLayout>

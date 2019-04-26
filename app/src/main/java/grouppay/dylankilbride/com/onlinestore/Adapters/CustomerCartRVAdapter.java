@@ -14,48 +14,37 @@ import java.util.List;
 import grouppay.dylankilbride.com.onlinestore.R;
 import grouppay.dylankilbride.com.onlinestore.models.Product;
 
-public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.ViewHolder> {
+public class CustomerCartRVAdapter extends RecyclerView.Adapter<CustomerCartRVAdapter.ViewHolder>{
 
   public List<Product> productList;
   private int itemLayout;
   private Context context;
-  private static ItemClickListener onItemClick;
+  private static ItemClickListener clickInterface;
 
-  public ProductsRVAdapter(List<Product> productList, int itemLayout, Context context) {
+  public CustomerCartRVAdapter(List<Product> productList, int itemLayout) {
     this.productList = productList;
     this.itemLayout = itemLayout;
-    this.context = context;
   }
 
-  public ProductsRVAdapter(List<Product> productList, Context context) {
+  public CustomerCartRVAdapter(List<Product> productList, Context context) {
     this.productList = productList;
     this.context = context;
   }
 
   @NonNull
   @Override
-  public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+  public CustomerCartRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
     View view = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout, viewGroup, false);
-    return new ViewHolder(view);
+    return new CustomerCartRVAdapter.ViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
+  public void onBindViewHolder(@NonNull final CustomerCartRVAdapter.ViewHolder viewHolder, final int position) {
     final Product product = productList.get(position);
     viewHolder.productTitle.setText(product.getTitle());
     viewHolder.productManufacturer.setText(product.getManufacturer());
     viewHolder.productPrice.setText(product.getPriceString());
     viewHolder.productStock.setText(product.getStockString());
-    viewHolder.addToCart.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        onItemClick.onItemClick(productList.get(position));
-      }
-    });
-  }
-
-  public void setOnClick(ItemClickListener onClick) {
-    this.onItemClick=onClick;
   }
 
   @Override
@@ -66,8 +55,6 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.Vi
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView productTitle, productManufacturer, productPrice, productStock;
-    public Button addToCart;
-
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -76,12 +63,10 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.Vi
       productManufacturer = itemView.findViewById(R.id.productManufacturer);
       productPrice = itemView.findViewById(R.id.productPrice);
       productStock = itemView.findViewById(R.id.productStock);
-      addToCart = itemView.findViewById(R.id.addProductToCart);
     }
 
     @Override
     public void onClick(View view) {
-
     }
   }
 }

@@ -9,15 +9,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import grouppay.dylankilbride.com.onlinestore.Adapters.ItemClickListener;
 import grouppay.dylankilbride.com.onlinestore.Adapters.ProductsRVAdapter;
 import grouppay.dylankilbride.com.onlinestore.R;
 import grouppay.dylankilbride.com.onlinestore.models.AuthorisationResponse;
+import grouppay.dylankilbride.com.onlinestore.models.Customer;
 import grouppay.dylankilbride.com.onlinestore.models.LoginDetails;
 import grouppay.dylankilbride.com.onlinestore.models.Product;
 import grouppay.dylankilbride.com.onlinestore.web_service_api.RetrofitAPI;
@@ -27,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CustomerHomePage extends AppCompatActivity {
+public class CustomerHomePage extends AppCompatActivity implements ItemClickListener {
 
   private Spinner sortOptions;
   private RecyclerView prodcutsListRV;
@@ -36,11 +39,28 @@ public class CustomerHomePage extends AppCompatActivity {
   private String baseUrl = "http://10.0.2.2:8080";
   private String selectedSortType = "ascending";
   private List<Product> productList = new ArrayList<>();
+  private Customer activeCustomer;
+  private String customerEmail;
+  private Button viewCart;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_customer_home_page);
+
+    customerEmail = getIntent().getStringExtra("customer");
+    activeCustomer = new Customer("username", customerEmail, "");
+
+    viewCart = findViewById(R.id.customerViewCart);
+
+    viewCart.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent viewCart = new Intent(CustomerHomePage.this, CustomerViewCart.class);
+        viewCart.putExtra("customer", activeCustomer);
+        startActivity(viewCart);
+      }
+    });
 
     String[] selectableSortingOptions = {"ascending", "descending"};
     ArrayAdapter<String> dropDownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, selectableSortingOptions);
@@ -64,7 +84,9 @@ public class CustomerHomePage extends AppCompatActivity {
     prodcutsListRV = (RecyclerView) findViewById(R.id.customerProductsRecyclerView);
     LinearLayoutManager productsListLayoutManager = new LinearLayoutManager(this);
     prodcutsListRV.setLayoutManager(productsListLayoutManager);
-    prodcutsListRV.setAdapter(new ProductsRVAdapter(productsList, R.layout.product_list_item));
+    adapter = new ProductsRVAdapter(productsList, R.layout.product_list_item, this);
+    prodcutsListRV.setAdapter(adapter);
+    adapter.setOnClick(CustomerHomePage.this);
 
   }
 
@@ -104,9 +126,16 @@ public class CustomerHomePage extends AppCompatActivity {
     });
   }
 
+
+
   @Override
   protected void onResume() {
     super.onResume();
     setUpProductsListCall();
+  }
+
+  @Override
+  public void onItemClick(Product product) {
+    activeCustomer.getCustomersCart().addProductToCart(product);
   }
 }

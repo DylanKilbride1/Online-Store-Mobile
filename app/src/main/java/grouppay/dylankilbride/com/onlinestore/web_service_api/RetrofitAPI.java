@@ -5,6 +5,7 @@ import java.util.List;
 import grouppay.dylankilbride.com.onlinestore.models.AuthorisationResponse;
 import grouppay.dylankilbride.com.onlinestore.models.Customer;
 import grouppay.dylankilbride.com.onlinestore.models.LoginDetails;
+import grouppay.dylankilbride.com.onlinestore.models.PaymentReceipt;
 import grouppay.dylankilbride.com.onlinestore.models.Product;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,4 +33,7 @@ public interface RetrofitAPI {
 
   @GET("/customers/getallcustomers")
   Call<List<Customer>> getAllCustomers();
+
+  @POST("/customers/purchase/{paymentMethod}")
+  Call<PaymentReceipt> purchaseProducts(@Path("paymentMethod") String paymentMethod, @Body List<Product> products);
 }

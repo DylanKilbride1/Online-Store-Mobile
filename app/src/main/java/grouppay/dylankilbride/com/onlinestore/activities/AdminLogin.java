@@ -69,8 +69,9 @@ public class AdminLogin extends AppCompatActivity {
         if(!response.isSuccessful()){
           Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
         } else {
-          if((response.body().getRoleId() != 0) && (response.body().isAuthorisationSuccess())) {
+          if((response.body().getRoleId() != "0") && (response.body().isAuthorisationSuccess())) {
             Intent adminHome = new Intent(AdminLogin.this, AdminHomePage.class);
+            adminHome.putExtra("admin", response.body().getRoleId());
             startActivity(adminHome);
           } else {
             View context = findViewById(R.id.adminLoginRL);

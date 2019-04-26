@@ -1,11 +1,14 @@
 package grouppay.dylankilbride.com.onlinestore.models;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 
   private long customerId;
   private String username;
   private String email;
   private String password;
+  private Cart customersCart = new Cart();
 
   public Customer(String username, String email, String password) {
     this.username = username;
@@ -50,5 +53,13 @@ public class Customer {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Cart getCustomersCart() {
+    return customersCart;
+  }
+
+  public void setCustomersCart(Cart customersCart) {
+    this.customersCart = customersCart;
   }
 }

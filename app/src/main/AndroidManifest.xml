@@ -29,7 +29,8 @@
         <activity android:name=".activities.CustomerRegistration" />
         <activity android:name=".activities.CustomerHomePage" />
         <activity android:name=".activities.AdminHomePage" />
-        <activity android:name=".activities.AdminViewCustomers"></activity>
+        <activity android:name=".activities.AdminViewCustomers" />
+        <activity android:name=".activities.CustomerViewCart"></activity>
     </application>
 
 </manifest>

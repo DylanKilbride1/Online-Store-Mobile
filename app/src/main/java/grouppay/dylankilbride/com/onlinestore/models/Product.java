@@ -1,6 +1,8 @@
 package grouppay.dylankilbride.com.onlinestore.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
   private String manufacturer;
   private String title;

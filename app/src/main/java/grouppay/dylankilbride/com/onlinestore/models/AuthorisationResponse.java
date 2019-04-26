@@ -2,21 +2,21 @@ package grouppay.dylankilbride.com.onlinestore.models;
 
 public class AuthorisationResponse {
 
-  private long roleId;
+  private String roleId;
   private boolean authorisationSuccess;
 
-  public AuthorisationResponse(long roleId, boolean authorisationSuccess) {
+  public AuthorisationResponse(String roleId, boolean authorisationSuccess) {
     this.roleId = roleId;
     this.authorisationSuccess = authorisationSuccess;
   }
 
   public AuthorisationResponse() {}
 
-  public long getRoleId() {
+  public String getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(long roleId) {
+  public void setRoleId(String roleId) {
     this.roleId = roleId;
   }
 

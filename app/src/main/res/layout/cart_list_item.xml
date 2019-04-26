@@ -3,15 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="80dp"
     android:padding="10dp"
     android:layout_marginBottom="10dp"
     android:background="@color/colorProductListItemBackground">
-
-    <RelativeLayout
-        android:id="@+id/productDetailsRL"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp">
 
         <TextView
             android:id="@+id/productTitle"
@@ -51,20 +46,4 @@
             android:gravity="bottom"
             android:textSize="20dp"
             tools:text="7 In Stock"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/productDetailsRL"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/addProductToCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add To Cart"/>
-
-    </RelativeLayout>
 </RelativeLayout>
